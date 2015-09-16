@@ -38,4 +38,13 @@ class ClienteController
 
         return $this->listaDeClientes;
     }
+
+    /**
+     * Busca o Cliente cadastrado
+     * @param $index = Index do objeto no array
+     * @return object
+     */
+    public function buscaCliente($index) {
+        return isset($this->listaDeClientes[$index]) ? $this->listaDeClientes[$index] : null;
+    }
 }
