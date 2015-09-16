@@ -6,6 +6,12 @@ class Cliente
     private $cpf;
     private $endereco;
 
+    public function __construct($nome, $cpf, $endereco) {
+        $this->nome = $nome;
+        $this->cpf = $cpf;
+        $this->endereco = $endereco;
+    }
+
     /**
      * @return mixed
      */
