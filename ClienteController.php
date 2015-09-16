@@ -18,11 +18,24 @@ class ClienteController
                 new Cliente("Cliente 6", "66666666666", "Endereço 6"),
                 new Cliente("Cliente 7", "77777777777", "Endereço 7"),
                 new Cliente("Cliente 8", "88888888888", "Endereço 8"),
-                new Cliente("Cliente 9", "99999999999", "Endereço 9"),
+                new Cliente("Cliente 9", "99999999999", "Endereço 9")
             );
     }
 
-    public function getListaDeClientes() {
+    /**
+     * Obter lista de Clientes cadastrados
+     * @param string $ordem <b>asc</b> = crescente e <b>desc</b> = decrescente.
+     * @return array
+     */
+    public function getListaDeClientes($ordem = 'asc') {
+        if ($ordem == 'asc') {
+            // ordena do menor para o maior
+            ksort($this->listaDeClientes);
+        } elseif ($ordem == 'desc') {
+            // ordena do maior para o menor
+            krsort($this->listaDeClientes);
+        }
+
         return $this->listaDeClientes;
     }
 }

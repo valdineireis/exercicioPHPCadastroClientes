@@ -4,6 +4,12 @@ require_once "Cliente.php";
 require_once "ClienteController.php";
 
 $cliente = new ClienteController();
+
+$ordem = filter_input(INPUT_GET, 'ordem', FILTER_DEFAULT);
+
+if (!isset($ordem)) {
+    $ordem = 'asc';
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -46,9 +52,11 @@ $cliente = new ClienteController();
             <h1>Cadastro de Clientes</h1>
         </div>
 
+        [<a href="index.php?ordem=<?=$ordem == 'asc' ? 'desc' : 'asc'?>">Adicionar ordem <?=$ordem == 'asc' ? 'Decrescente' : 'Crescente'?></a>]
         <table class="table table-striped table-condensed">
             <thead>
             <tr>
+                <th>#</th>
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Ednereço</th>
@@ -56,8 +64,9 @@ $cliente = new ClienteController();
             </thead>
             <tbody>
             <?php
-            foreach($cliente->getListaDeClientes() as $obj) {
+            foreach($cliente->getListaDeClientes($ordem) as $key => $obj) {
                 echo "<tr>";
+                echo "<td>" . $key . "</td>";
                 echo "<td>" . $obj->getNome() . "</td>";
                 echo "<td>" . $obj->getCpf() . "</td>";
                 echo "<td>" . $obj->getEndereco() . "</td>";
