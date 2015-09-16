@@ -10,9 +10,6 @@ $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $obj = $cliente->buscaCliente($id);
 
 if (!$obj) {
-    echo '<script language="javascript">';
-    echo 'alert("Cliente inexistente!");';
-    echo '</script>';
     header("Location:index.php?action=cliente/inexistente");
 }
 
